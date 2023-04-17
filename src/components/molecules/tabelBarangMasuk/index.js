@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -114,50 +113,7 @@ const TabelBarangMasuk = (props) => {
                 })}
               </tbody>
             </table>
-            <table
-              id="myTabelMasuk"
-              className="min-w-full text-center text-sm font-light hidden"
-            >
-              <thead className="border-b font-medium dark:border-neutral-500">
-                <tr className="bg-green-700">
-                  <th scope="col" className="px-6 py-4">
-                    Nama Barang
-                  </th>
-                  <th scope="col" className="px-6 py-4">
-                    Jumlah Masuk
-                  </th>
-                  <th scope="col" className="px-6 py-4">
-                    Tanggal Masuk
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {sortedSemuaBarangMasuk.map((item) => {
-                  const dateString = item.createdAt;
-                  const date = new Date(dateString);
-                  const year = date.getFullYear();
-                  const month = date.getMonth() + 1; // tambahkan 1 karena bulan dimulai dari 0
-                  const day = date.getDate();
-                  let tanggal = `${day} - ${month} - ${year}`;
-                  return (
-                    <tr
-                      className="border-b bg-green-100 border-green-500"
-                      key={item._id}
-                    >
-                      <td className="whitespace-nowrap px-6 py-4 font-medium text-neutral-600">
-                        {item.nama_item_masuk}
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 font-medium text-neutral-600">
-                        {item.jumlah_item_masuk}
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 font-medium text-neutral-600">
-                        {tanggal}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+
             <div className="flex absolute right-0 -bottom-7">
               <div
                 className="bg-custom-abu-tua p-1 px-2 mr-5 rounded-lg text-white cursor-pointer"
@@ -171,17 +127,6 @@ const TabelBarangMasuk = (props) => {
               >
                 <FontAwesomeIcon icon={faArrowRight} />
               </div>
-            </div>
-
-            <div className="flex absolute right-0 top-0 ">
-              <ReactHTMLTableToExcel
-                id="test-table-xls-button"
-                className="bg-custom-hijau-muda p-1 px-2 rounded-lg text-white cursor-pointer"
-                table="myTabelMasuk"
-                filename="data-barang-masuk"
-                sheet="Sheet1"
-                buttonText="save"
-              />
             </div>
           </div>
         </div>
