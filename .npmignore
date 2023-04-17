@@ -1,0 +1,7 @@
+# Ignore files and directories starting with a dot
+.*
+# Ignore files with a .test.js or .spec.js extension
+*.test.js
+*.spec.js
+# Ignore the node_modules directory
+node_modules/
