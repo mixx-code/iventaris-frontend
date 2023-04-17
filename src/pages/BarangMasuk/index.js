@@ -18,7 +18,10 @@ const BarangMasuk = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/v1/iventaris/item/${id}`)
+      .get(
+        `http://localhost:4000/v1/iventaris/item/${id}` ||
+          `https://zany-rose-butterfly-coat.cyclic.app/v1/iventaris/item/${id}`
+      )
       .then((response) => {
         const responseAPI = response.data;
         setbarang(responseAPI.data);
@@ -31,10 +34,14 @@ const BarangMasuk = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .put(`http://localhost:4000/v1/iventaris/item/${id}`, {
-        nama_item: barang.nama_item,
-        total_stok: parseInt(jumlahStokBaru),
-      })
+      .put(
+        `http://localhost:4000/v1/iventaris/item/${id}` ||
+          `https://zany-rose-butterfly-coat.cyclic.app/v1/iventaris/item/${id}`,
+        {
+          nama_item: barang.nama_item,
+          total_stok: parseInt(jumlahStokBaru),
+        }
+      )
       .then((response) => {
         console.log(response.data);
       })
@@ -43,10 +50,14 @@ const BarangMasuk = () => {
       });
 
     axios
-      .post("http://localhost:4000/v1/iventaris/item-masuk", {
-        nama_item_masuk: barang.nama_item,
-        jumlah_item_masuk: parseInt(jumlahItemMasuk),
-      })
+      .post(
+        "http://localhost:4000/v1/iventaris/item-masuk" ||
+          "https://zany-rose-butterfly-coat.cyclic.app/v1/iventaris/item-masuk",
+        {
+          nama_item_masuk: barang.nama_item,
+          jumlah_item_masuk: parseInt(jumlahItemMasuk),
+        }
+      )
       .then((response) => {
         console.log(response.data);
         window.alert("Item berhasil ditambahkan!");
